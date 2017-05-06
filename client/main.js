@@ -1,7 +1,7 @@
 // Libs
 import {Meteor} from 'meteor/meteor';
 import Vue from 'vue';
-import router from '/imports/routes';
+import routerFactory from '/imports/routes';
 
 // App layout
 import AppLayout from '/imports/ui/AppLayout.vue';
@@ -9,8 +9,9 @@ import AppLayout from '/imports/ui/AppLayout.vue';
 // App start
 Meteor.startup(() => {
   // Start the router
+  const router = routerFactory.create();
   new Vue({
-    router: router.start(),
+    router,
     render: h => h(AppLayout),
   }).$mount('app');
 });
